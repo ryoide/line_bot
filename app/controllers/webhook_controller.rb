@@ -2,8 +2,8 @@ class WebhookController < ApplicationController
   require 'line/bot'
   protect_from_forgery with: :null_session
   
-  # CHANNEL_SECRET = '28227f54c66cb6e4dc7b1d2efc108bdb'
-  # CHANNEL_ACCESS_TOKEN = 'lw3F5SuOT2RZJZvCRZZxaDV5GkL5iqlvX0A36N2SBCcKWd+7BPQPOPP/1FYZpML+Slb1z+oC8ZMSWbgOaTN2iT3Or8/1uTnSp1NL+CxUVhaa1qotSfFzHzzYV4hlxte718al5eoLkL6z8HWgo3h5dwdB04t89/1O/w1cDnyilFU='
+  CHANNEL_SECRET = '28227f54c66cb6e4dc7b1d2efc108bdb'
+  CHANNEL_ACCESS_TOKEN = 'lw3F5SuOT2RZJZvCRZZxaDV5GkL5iqlvX0A36N2SBCcKWd+7BPQPOPP/1FYZpML+Slb1z+oC8ZMSWbgOaTN2iT3Or8/1uTnSp1NL+CxUVhaa1qotSfFzHzzYV4hlxte718al5eoLkL6z8HWgo3h5dwdB04t89/1O/w1cDnyilFU='
   # OUTBOUND_PROXY = '54.173.229.200'
   
   def callback
