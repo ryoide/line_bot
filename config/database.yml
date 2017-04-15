@@ -33,8 +33,6 @@ test:
 
 production:
   adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: line_bot_production
-  username: root
-  socket: /tmp/mysql.sock
+  database: heroku_0c9107469134f32
+  username: b6b2d919795c79
+  password: <%= ENV['DATABASE_PASSWORD'] %>
