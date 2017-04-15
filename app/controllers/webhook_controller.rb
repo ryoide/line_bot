@@ -1,5 +1,4 @@
 class WebhookController < ApplicationController
-  require 'sinatra'
   require 'line/bot'
   protect_from_forgery with: :null_session
   
