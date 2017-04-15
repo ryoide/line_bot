@@ -36,7 +36,4 @@ production:
   encoding: utf8
   reconnect: false
   database: line_bot_production
-  pool: 5
   username: root
-  password:
-  host: localhost
