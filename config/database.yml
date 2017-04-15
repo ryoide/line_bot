@@ -37,3 +37,4 @@ production:
   reconnect: false
   database: line_bot_production
   username: root
+  socket: /tmp/mysql.sock
