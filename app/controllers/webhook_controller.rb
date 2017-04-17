@@ -22,8 +22,8 @@ class WebhookController < ApplicationController
     
     events = client.parse_events_from(body)
     events.each { |event|
-      case event
-      when Line::Bot::Event::Message
+      # case event
+      # when Line::Bot::Event::Message
         # case event.type
         # when Line::Bot::Event::MessageType::Text
           message = {
@@ -36,7 +36,7 @@ class WebhookController < ApplicationController
         #   tf = Tempfile.open("content")
         #   tf.write(response.body)
         # end
-      end
+      # end
     }
     head :ok
   end
