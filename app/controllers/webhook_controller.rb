@@ -38,7 +38,7 @@ class WebhookController < ApplicationController
         end
       end
     }
-    render status: 200
+    head :ok
   end
   
   private
