@@ -11,7 +11,10 @@ class WebhookController < ApplicationController
     #   render :nothing => true, status: 470
     # end
     body = request.body.read
-
+    client ||= Line::Bot::Client.new { |config|
+      config.channel_secret = CHANNEL_SECRET
+      config.channel_token = CHANNEL_ACCESS_TOKEN
+    }
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
       error 400 do 'Bad Request' end
