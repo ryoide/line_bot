@@ -26,8 +26,6 @@ class WebhookController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          Rails.logger.info client.channel_secret
-          Rails.logger.info client.channel_token
           message = {
             type: 'text',
             text: event.message['text']
@@ -40,7 +38,7 @@ class WebhookController < ApplicationController
         end
       end
     }
-    head :ok
+    render status: 200
   end
   
   private
