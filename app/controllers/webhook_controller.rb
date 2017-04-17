@@ -42,7 +42,7 @@ class WebhookController < ApplicationController
         end
       end
     }
-    "OK"
+    head :ok
   end
   
   private
