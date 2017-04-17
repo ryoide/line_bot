@@ -41,21 +41,6 @@ class WebhookController < ApplicationController
     head :ok
   end
   
-  module Line
-  module Bot
-    class HTTPClient
-      def http(uri)
-        proxy = URI(ENV["FIXIE_URL"])
-        http = Net::HTTP.new(uri.host, uri.port, proxy.host, proxy.port, proxy.user, proxy.password)
-        if uri.scheme == "https"
-          http.use_ssl = true
-        end
-
-        http
-      end
-    end
-  end
-  end
   private
   # LINEからのアクセスか確認.
   # 認証に成功すればtrueを返す。
@@ -68,4 +53,20 @@ class WebhookController < ApplicationController
     # signature == signature_answer
     
   end
+end
+
+module Line
+module Bot
+  class HTTPClient
+    def http(uri)
+      proxy = URI(ENV["FIXIE_URL"])
+      http = Net::HTTP.new(uri.host, uri.port, proxy.host, proxy.port, proxy.user, proxy.password)
+      if uri.scheme == "https"
+        http.use_ssl = true
+      end
+
+      http
+    end
+  end
+end
 end
