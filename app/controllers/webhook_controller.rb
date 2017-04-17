@@ -7,8 +7,14 @@ class WebhookController < ApplicationController
   # OUTBOUND_PROXY = '54.173.229.200'
   
   def callback
-    unless is_validate_signature
-      render :nothing => true, status: 470
+    # unless is_validate_signature
+    #   render :nothing => true, status: 470
+    # end
+    body = request.body.read
+
+    signature = request.env['HTTP_X_LINE_SIGNATURE']
+    unless client.validate_signature(body, signature)
+      error 400 do 'Bad Request' end
     end
     client ||= Line::Bot::Client.new { |config|
     config.channel_secret = ENV["CHANNEL_SECRET"]
@@ -41,10 +47,11 @@ class WebhookController < ApplicationController
   # 認証に成功すればtrueを返す。
   # ref) https://developers.line.me/bot-api/getting-started-with-bot-api-trial#signature_validation
   def is_validate_signature
-    signature = request.headers["X-LINE-ChannelSignature"]
-    http_request_body = request.raw_post
-    hash = OpenSSL::HMAC::digest(OpenSSL::Digest::SHA256.new, CHANNEL_SECRET, http_request_body)
-    signature_answer = Base64.strict_encode64(hash)
-    signature == signature_answer
+    # signature = request.headers["X-LINE-ChannelSignature"]
+    # http_request_body = request.raw_post
+    # hash = OpenSSL::HMAC::digest(OpenSSL::Digest::SHA256.new, CHANNEL_SECRET, http_request_body)
+    # signature_answer = Base64.strict_encode64(hash)
+    # signature == signature_answer
+    
   end
 end
