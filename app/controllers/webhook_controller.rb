@@ -19,11 +19,7 @@ class WebhookController < ApplicationController
     unless client.validate_signature(body, signature)
       error 400 do 'Bad Request' end
     end
-    client ||= Line::Bot::Client.new { |config|
-    config.channel_secret = ENV["CHANNEL_SECRET"]
-    config.channel_token = ENV["CHANNEL_ACCESS_TOKEN"]
-    }
-    body = request.body.read
+    
     events = client.parse_events_from(body)
     events.each { |event|
       case event
